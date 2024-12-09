@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";  // Make sure to use Link from react-router-dom
 import logoLight from "../assets/images/logo-light.png";
 import '../assets/css/solinom.css';
 import '../assets/css/solinom-custom-rtl.css';
 import '../assets/css/solinom-rtl.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import MobileNav from './navbarScroll';  // Correctly import MobileNav Component
+import MobileNav from './navbarScroll';  // Import MobileNav Component
+import SearchPopup from './Searchpoup';  // Import SearchPopup Component
 
 function Navbar() {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);  // State to manage mobile nav visibility
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const toggleMobileNav = () => {
-    setIsMobileNavOpen(!isMobileNavOpen);  // Toggle mobile navigation
+    setIsMobileNavOpen(!isMobileNavOpen);
   };
 
   return (
@@ -19,57 +19,57 @@ function Navbar() {
       <div className="container">
         <div className="main-header__inner">
           <div className="main-header__logo">
-            <Link to="/">
+            <a href="/">
               <img
                 src={logoLight}
                 alt="Solinom HTML"
                 width="110"
                 height="90"
               />
-            </Link>
+            </a>
           </div>
           <div className="main-header__middle">
             <nav className="main-header__nav main-menu">
               <ul className="main-menu__list">
                 <li>
-                  <Link to="/">Home</Link>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <Link to="/about">About</Link>
+                  <a href="/about">About</a>
                 </li>
                 <li className="dropdown">
-                  <Link to="/room-2.html">Room</Link>
+                  <a href="room-2.html">Room</a>
                   <ul className="sub-menu">
                     <li>
-                      <Link to="/room">Deluxe</Link>
+                      <a href="/room">Deluxe</a>
                     </li>
                     <li>
-                      <Link to="/">Standard</Link>
+                      <a href="/">Standard</a>
                     </li>
                     <li>
-                      <Link to="/detail">Room Details</Link>
+                      <a href="/detail">Room Details</a>
                     </li>
                   </ul>
                 </li>
                 <li className="dropdown">
-                  <Link to="/gallery-grid.html">Gallery</Link>
+                  <a href="gallery-grid.html">Gallery</a>
                   <ul className="sub-menu">
                     <li>
-                      <Link to="404.html">404 Error</Link>
+                      <a href="404.html">404 Error</a>
                     </li>
                     <li>
-                      <Link to="/cart">Cart</Link>
+                      <a href="/cart">Cart</a>
                     </li>
                     <li>
-                      <Link to="/checkout">Checkout</Link>
+                      <a href="/checkout">Checkout</a>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <Link to="/faq">FAQs</Link>
+                  <a href="/faq">FAQs</a>
                 </li>
                 <li>
-                  <Link to="/login">Login</Link>
+                  <a href="/login">Login</a>
                 </li>
               </ul>
             </nav>
@@ -77,25 +77,23 @@ function Navbar() {
             <nav className="main-header__nav main-menu">
               <ul className="main-menu__list">
                 <li>
-                  <Link to="/contact">Contact</Link>
+                  <a href="/contact">Contact</a>
                 </li>
               </ul>
             </nav>
           </div>
           <div className="main-header__right">
-            <Link to="/room-2.html" className="solinom-btn main-header__btn">
+            <a href="room-2.html" className="solinom-btn main-header__btn">
               Book Room
-            </Link>
+            </a>
 
             <div className="main-header__info">
-              <Link to="cart" className="main-header__info__item">
+              <a href="cart" className="main-header__info__item">
                 <i className="fas fa-shopping-cart" aria-hidden="true"></i>
                 <span className="sr-only">Cart</span>
-              </Link>
-              <a href="#" className="search-toggler main-header__info__item">
-                <i className="fas fa-search" aria-hidden="true"></i>
-                <span className="sr-only">Search</span>
               </a>
+              {/* Include Search Popup */}
+              <SearchPopup />
             </div>
             {/* Mobile Nav Toggle Button */}
             <div

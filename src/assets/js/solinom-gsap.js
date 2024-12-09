@@ -1,72 +1,85 @@
-(function ($) {
-    "use strict";
-    
-  /**********GSAP AMINATION START************/
+import { gsap } from 'gsap';
+import $ from 'jquery';
 
-  // Split Text
+// Custom function to split text into individual characters manually
+function splitTextManually(element) {
+  const text = $(element).text();
+  const splitText = text.split('').map(char => `<span>${char}</span>`).join('');
+  $(element).html(splitText);
+}
+
+(function () {
+  "use strict";
+
+  /********** GSAP ANIMATION START ************/
+
+  // Split Text function
   function bwsplit_text() {
     setTimeout(function () {
       var splitTextElements = $(".sec-title__title, .sec-title__tagline");
       if (splitTextElements.length === 0) return;
-      gsap.registerPlugin(SplitText);
+      
       splitTextElements.each(function (index, element) {
-        var splitElement = new SplitText(element, {
-          type: "chars, words", // "chars, words, lines"
-        });
+        // Split the text into individual characters
+        splitTextManually(element);
 
         gsap.set(element, {
           perspective: 400
         });
 
+        // Apply different effects based on class
+        const splitChars = $(element).find('span'); // Get the split characters
         if ($(element).hasClass("bw-split-in-fade")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             ease: "Back.easeOut"
           });
         }
         if ($(element).hasClass("bw-split-in-right")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             x: "20",
             ease: "Back.easeOut"
           });
         }
         if ($(element).hasClass("bw-split-in-left")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             x: "-20",
             ease: "Back.easeOut"
           });
         }
         if ($(element).hasClass("bw-split-in-up")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             y: "20",
             ease: "circ.out"
           });
         }
         if ($(element).hasClass("bw-split-in-down")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             y: "-20",
             ease: "circ.out"
           });
         }
         if ($(element).hasClass("bw-split-in-rotate")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
             rotateX: "50deg",
             ease: "circ.out"
           });
         }
         if ($(element).hasClass("bw-split-in-scale")) {
-          gsap.set(splitElement.chars, {
+          gsap.set(splitChars, {
             opacity: 0,
-            rotateX: "50deg",
+            scale: 0.5,
             ease: "circ.out"
           });
         }
-        element.anim = gsap.to(splitElement.chars, {
+
+        // Apply GSAP animation
+        gsap.to(splitChars, {
           scrollTrigger: {
             trigger: element,
             toggleActions: "restart pause resume reverse",
@@ -84,7 +97,8 @@
     }, 200);
   }
 
+  // Call split text function on window load
   $(window).on("load", function () {
-      bwsplit_text();
+    bwsplit_text();
   });
-})(jQuery);
+})();

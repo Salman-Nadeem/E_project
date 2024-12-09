@@ -86,6 +86,17 @@
   color: #333;
   background-color: #fff;
 }
+.custom-footer-margin  {
+  margin-top:80px;
+}
+.custom-cta-margin{
+  margin-top: 33px;
+
+}
+/* In your CSS file (solinom-rtl.css or solinom.css) */
+.checkout-page .row {
+  flex-direction: row-reverse;
+}
 
 
 

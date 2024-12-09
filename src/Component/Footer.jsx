@@ -7,7 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Footer = () => {
   return (
-    <footer className="main-footer">
+    <footer className="main-footer custom-footer-margin">
       <div className="main-footer__top">
         <div className="container">
           <div className="row">

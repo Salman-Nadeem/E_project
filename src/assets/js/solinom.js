@@ -1,6 +1,10 @@
+import {WOW} from 'wow.js';          // If you're using the WOW.js library
+import noUiSlider from 'nouislider'; // For noUiSlider
+import { tns } from 'tiny-slider'; // For tiny-slider (tns)
+import $ from 'jquery'; 
 
 
-(function ($) {
+(function () {
   "use strict";
 
   /*-- Checkout Accoradin --*/
@@ -906,4 +910,4 @@ if ($(".mobile-nav__container .main-menu__list").length) {
   $(window).on("resize", function () {
     solinom_stretch();
   });
-})(jQuery);
+})();
